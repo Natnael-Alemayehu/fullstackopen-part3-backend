@@ -1,7 +1,11 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 app.use(express.json())
+
+morgan.token('post-log', function (req, res) { return JSON.stringify(req.body) })
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :post-log'))
 
 let persons = [
     {
@@ -46,7 +50,6 @@ app.get('/api/persons/:id', (req, res) => {
     )
 })
 
-
 app.post('/api/persons', (req, res) => {
     const body = req.body
     const id = Math.floor(Math.random() * 100_000_000)
@@ -64,7 +67,6 @@ app.post('/api/persons', (req, res) => {
                 number: body.number
             }
             persons = persons.concat(new_person)
-            console.log(persons)
             res.json(new_person)
 
         }
@@ -79,7 +81,7 @@ app.post('/api/persons', (req, res) => {
 app.delete('/api/persons/:id', (req, res) => {
     const id = req.params.id
     persons = persons.filter(p => p.id !== id)
-    res.send(204).end()
+    res.status(204).end()
 })
 
 
