@@ -1,0 +1,27 @@
+{
+  "name": "fullstackopen-part3-backend",
+  "version": "1.0.0",
+  "description": "This is the backend for the phonebook application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Natnael-Alemayehu/fullstackopen-part3-backend.git"
+  },
+  "author": "Natnael Alemayehu <se.natnael.alemayehu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Natnael-Alemayehu/fullstackopen-part3-backend/issues"
+  },
+  "homepage": "https://github.com/Natnael-Alemayehu/fullstackopen-part3-backend#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
