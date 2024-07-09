@@ -71,7 +71,6 @@ app.post('/api/persons', (req, res) => {
             }
             persons = persons.concat(new_person)
             res.json(new_person)
-
         }
     }
     else {
