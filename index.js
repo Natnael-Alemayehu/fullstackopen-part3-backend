@@ -11,7 +11,6 @@ app.use(express.static('dist'))
 app.use(cors())
 app.use(express.json())
 
-// console.log(errors);
 morgan.token('post-log', function (req, res) { return JSON.stringify(req.body) })
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :post-log'))
 
@@ -75,6 +74,21 @@ app.delete('/api/persons/:id', (req, res, next) => {
         })
 })
 
+app.put('/api/persons/:id', (req, res, next) => {
+    console.log("I am in the PUT statement");
+    const body = req.body
+    const updated_person = {
+        name: body.name,
+        number: body.number
+    }
+    Person
+        .findByIdAndUpdate(req.params.id, updated_person, { new: true })
+        .then(updated => {
+            res.json(updated)
+        })
+        .catch(error => next(error))
+})
+
 const notFound = (req, res) => {
     res.status(404).send({ error: "Unknown Endpoint" })
 }
@@ -90,8 +104,8 @@ const handleError = (err, req, res, next) => {
     next(err)
 }
 
-app.use(handleError)
 app.use(notFound)
+app.use(handleError)
 
 
 const PORT = process.env.PORT

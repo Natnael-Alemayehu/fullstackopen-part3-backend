@@ -1,6 +1,6 @@
 GET http://localhost:3001/api/persons
 ###
-DELETE http://localhost:3001/api/persons/668fa6420af9dc7274b62261
+DELETE http://localhost:3001/api/persons/668fe01747d2ae17e38b8455
 ###
 POST http://localhost:3001/api/persons
 Content-Type: application/json
@@ -10,8 +10,17 @@ Content-Type: application/json
     "number":"0922112233"
 }
 ###
-GET http://localhost:3001/api/persons/668e4f4b6cf8eac02495d414
+GET http://localhost:3001/api/persons/668e4f426cf8eac02495d412
 
 ###
 POST http://localhost:3001/api/persons
+
+###
+PUT http://localhost:3001/api/persons/668fdfaaf1c8c851517eeeea
+Content-Type: application/json
+
+{
+    "name":"Tesema Alemachew",
+    "number": "11111111111111"
+}
 
