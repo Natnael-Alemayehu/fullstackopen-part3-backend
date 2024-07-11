@@ -8,7 +8,7 @@ mongoose.set('strictQuery', false)
 console.log("Connecting to MongoDB");
 mongoose.connect(url)
     .then(response => {
-        console.log("MondoDB connected succesfully");
+        console.log("MondoDB connected successfully");
     })
     .catch(error => {
         console.log("Error has occurred: ", error);
@@ -17,6 +17,14 @@ mongoose.connect(url)
 const phoneBookSchema = new mongoose.Schema({
     name: String,
     number: String,
+})
+
+phoneBookSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject.__v
+        delete returnedObject._id
+    }
 })
 
 module.exports = mongoose.model("Person", phoneBookSchema)

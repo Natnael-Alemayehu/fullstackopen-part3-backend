@@ -52,9 +52,15 @@ app.post('/api/persons', (req, res) => {
 })
 
 app.delete('/api/persons/:id', (req, res) => {
-    const id = req.params.id
-    persons = persons.filter(p => p.id !== id)
-    res.status(204).end()
+    Person
+        .findByIdAndDelete(req.params.id)
+        .then(response => {
+            console.log(`${response.name} has been deleted`);
+            res.status(204).json({ success: "Deleted" }).end()
+        })
+        .catch(error => {
+            console.log("error", error);
+        })
 })
 
 
