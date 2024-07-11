@@ -1,13 +1,17 @@
 GET http://localhost:3001/api/persons
 ###
-DELETE http://localhost:3001/api/persons/1
+DELETE http://localhost:3001/api/persons/668fa6420af9dc7274b62261
 ###
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name":"TestPosting",
+    "name": "Tesema Alebachew",
     "number":"0922112233"
 }
 ###
-GET http://localhost:3001/api/persons/668d439b720744eb88b94009
+GET http://localhost:3001/api/persons/668e4f4b6cf8eac02495d414
+
+###
+POST http://localhost:3001/api/persons
+
