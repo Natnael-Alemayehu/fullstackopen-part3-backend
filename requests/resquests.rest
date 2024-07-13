@@ -6,8 +6,8 @@ POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name": "Tesema Alebachew",
-    "number":"0922112233"
+    "name": "shouldnotwork",
+    "number":"02-12-22112233"
 }
 ###
 GET http://localhost:3001/api/persons/668e4f426cf8eac02495d412
@@ -16,11 +16,12 @@ GET http://localhost:3001/api/persons/668e4f426cf8eac02495d412
 POST http://localhost:3001/api/persons
 
 ###
-PUT http://localhost:3001/api/persons/668fdfaaf1c8c851517eeeea
+PUT http://localhost:3001/api/persons/669245c0122d2a18e35e92c3
 Content-Type: application/json
 
 {
-    "name":"Tesema Alemachew",
+    "name":"Tefera",
     "number": "11111111111111"
 }
-
+###
+GET http://localhost:3001/info

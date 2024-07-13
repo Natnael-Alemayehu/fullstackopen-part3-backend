@@ -5,13 +5,13 @@ const url = process.env.MONGODB_URI
 
 mongoose.set('strictQuery', false)
 
-console.log("Connecting to MongoDB");
+console.log('Connecting to MongoDB')
 mongoose.connect(url)
-    .then(response => {
-        console.log("MondoDB connected successfully");
+    .then(() => {
+        console.log('MondoDB connected successfully')
     })
     .catch(error => {
-        console.log("Error has occurred: ", error);
+        console.log('Error has occurred: ', error)
     })
 
 const phoneBookSchema = new mongoose.Schema({
@@ -25,7 +25,7 @@ const phoneBookSchema = new mongoose.Schema({
         minlength: 8,
         validate: {
             validator: function (v) {
-                return /^\d{2,3}-\d+$/g.test(v);
+                return /^\d{2,3}-\d+$/g.test(v)
             }
         },
         required: true
@@ -40,4 +40,4 @@ phoneBookSchema.set('toJSON', {
     }
 })
 
-module.exports = mongoose.model("Person", phoneBookSchema)
+module.exports = mongoose.model('Person', phoneBookSchema)
