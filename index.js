@@ -23,10 +23,13 @@ app.get('/api/persons', (req, res, next) => {
         .catch(error => next(error))
 })
 
-app.get('/info', (req, res) => {
-
-    const time = Date()
-    res.send(`<p>Phonebook has info for ${length} people</p>  <p>${time}</p>`)
+app.get('/info', (req, res, next) => {
+    Person.countDocuments({})
+        .then(length => {
+            const time = Date()
+            res.send(`<p>Phonebook has info for ${length} people</p>  <p>${time}</p>`)
+        })
+        .catch(error => next(error))
 })
 
 app.get('/api/persons/:id', (req, res, next) => {
@@ -82,7 +85,7 @@ app.put('/api/persons/:id', (req, res, next) => {
         number: body.number
     }
     Person
-        .findByIdAndUpdate(req.params.id, updated_person, { new: true })
+        .findByIdAndUpdate(req.params.id, updated_person, { new: true, runValidators: true })
         .then(updated => {
             res.json(updated)
         })
@@ -100,6 +103,9 @@ const handleError = (err, req, res, next) => {
     }
     if (err.name == "PostingError") {
         res.status(400).json({ error: "Something went wrong while posting" }).end()
+    }
+    if (err.name == "ValidationError") {
+        res.status(400).json({ error: err.message }).end()
     }
     next(err)
 }
